@@ -110,7 +110,7 @@
                                         <button class="edit-btn" data-id="${id}" data-title="${game.title}" data-description="${game.description}" data-category="${game.category}" data-price="${game.price}">
                                             <i class="fas fa-edit"></i>
                                         </button>
-                                        <button class="delete-btn">
+                                        <button class="delete-btn" data-id="${id}">
                                             <i class="fas fa-trash"></i>
                                         </button>
                                     </td>
@@ -213,6 +213,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             console.log('addgames.jsp loaded, DOM ready');
             console.log('Edit buttons found:', document.getElementsByClassName('edit-btn').length);
+            console.log('Delete buttons found:', document.getElementsByClassName('delete-btn').length);
         });
     </script>
     <script src="js/admin.js"></script>

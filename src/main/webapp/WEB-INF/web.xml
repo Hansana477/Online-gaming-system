@@ -24,4 +24,14 @@
        <servlet-name>updategames</servlet-name>
        <url-pattern>/update</url-pattern>
    </servlet-mapping> 
+   
+   <servlet>
+       <servlet-name>deletegame</servlet-name>
+       <servlet-class>com.games.DeleteGameServlet</servlet-class>
+   </servlet>
+   
+   <servlet-mapping>
+       <servlet-name>deletegame</servlet-name>
+       <url-pattern>/delete</url-pattern>
+   </servlet-mapping> 
 </web-app>

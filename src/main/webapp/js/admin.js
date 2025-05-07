@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeModal = document.getElementById('closeModal');
     const cancelBtn = document.getElementById('cancelBtn');
     const editButtons = document.getElementsByClassName('edit-btn');
+    const deleteButtons = document.getElementsByClassName('delete-btn');
     const editGameModal = document.getElementById('editGameModal');
     const closeEditModal = document.getElementById('closeEditModal');
     const cancelEditBtn = document.getElementById('cancelEditBtn');
@@ -21,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('addGameBtn:', addGameBtn);
     console.log('editGameModal:', editGameModal);
     console.log('editButtons count:', editButtons.length);
+    console.log('deleteButtons count:', deleteButtons.length);
 
     // Add Game Modal Handling
     if (addGameBtn && addGameModal) {
@@ -94,6 +96,48 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 } catch (error) {
                     console.error('Error in edit button handler:', error);
+                    if (debugOutput) {
+                        debugOutput.textContent = `Error: ${error.message}`;
+                    }
+                }
+            });
+        });
+    }
+
+    // Delete Game Handling
+    if (deleteButtons.length === 0) {
+        console.error('No delete buttons found');
+    } else {
+        Array.from(deleteButtons).forEach(button => {
+            button.addEventListener('click', () => {
+                try {
+                    const gameId = button.getAttribute('data-id');
+                    console.log('Delete button clicked, data-id:', gameId);
+
+                    if (!gameId) {
+                        throw new Error('Game ID not found on delete button');
+                    }
+
+                    // Confirm deletion
+                    if (confirm(`Are you sure you want to delete game with ID ${gameId}?`)) {
+                        console.log('Deleting game with ID:', gameId);
+
+                        // Send POST request to delete servlet
+                        const form = document.createElement('form');
+                        form.method = 'POST';
+                        form.action = 'delete';
+                        const input = document.createElement('input');
+                        input.type = 'hidden';
+                        input.name = 'id';
+                        input.value = gameId;
+                        form.appendChild(input);
+                        document.body.appendChild(form);
+                        form.submit();
+                    } else {
+                        console.log('Deletion cancelled');
+                    }
+                } catch (error) {
+                    console.error('Error in delete button handler:', error);
                     if (debugOutput) {
                         debugOutput.textContent = `Error: ${error.message}`;
                     }

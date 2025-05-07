@@ -1,5 +1,28 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="com.games.GamesDBUtil" %>
+<%@ page import="com.games.Games" %>
+<%@ page import="java.util.List" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%
+    Games firstGame = null;
+    String errorMessage = null;
+    try {
+        List<Games> games = GamesDBUtil.getAllGames();
+        if (games != null && !games.isEmpty()) {
+            firstGame = games.get(0);
+            System.out.println("First game fetched for index.jsp: ID=" + firstGame.getId() + ", title=" + firstGame.getTitle());
+        } else {
+            errorMessage = "No games found in database";
+            System.out.println(errorMessage);
+        }
+    } catch (Exception e) {
+        errorMessage = "Error fetching games: " + e.getMessage();
+        System.out.println(errorMessage);
+        e.printStackTrace();
+    }
+    request.setAttribute("firstGame", firstGame);
+    request.setAttribute("errorMessage", errorMessage);
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,7 +57,7 @@
       <div class="hero-content">
         <h1>DIVE INTO THE MATRIX</h1>
         <p>Experience next-gen gaming in our cyberpunk universe</p>
-        <a href="#" class="btn register hero-btn">EXPLORE GAMES</a>
+        <a href="store.jsp" class="btn register hero-btn">EXPLORE GAMES</a>
       </div>
     </section>
 
@@ -43,22 +66,41 @@
       <h2 class="section-title">FEATURED GAMES</h2>
       
       <div class="slideshow-container">
-        <!-- Slide 1 -->
-        <div class="game-slide active">
-          <div class="slide-image" style="background-image: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
-          <div class="slide-info">
-            <h3>NEON REVOLUTION</h3>
-            <p>Fight through the dystopian megacity in this action-packed RPG</p>
-            <div class="game-tags">
-              <span>RPG</span>
-              <span>Open World</span>
-              <span>Cyberpunk</span>
+        <!-- Slide 1: Dynamic First Game -->
+        <c:choose>
+          <c:when test="${not empty firstGame}">
+            <div class="game-slide active">
+              <div class="slide-image" style="background-image: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
+              <div class="slide-info">
+                <h3>${firstGame.title}</h3>
+                <p>${firstGame.description}</p>
+                <div class="game-tags">
+                  <span>${firstGame.category}</span>
+                  <span>Open World</span>
+                  <span>Cyberpunk</span>
+                </div>
+                <a href="viewgame.jsp?id=${firstGame.id}" class="btn login">VIEW DETAILS</a>
+              </div>
             </div>
-            <a href="#" class="btn login">VIEW DETAILS</a>
-          </div>
-        </div>
+          </c:when>
+          <c:otherwise>
+            <div class="game-slide active">
+              <div class="slide-image" style="background-image: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
+              <div class="slide-info">
+                <h3>NO GAMES AVAILABLE</h3>
+                <p>Check back later for featured games</p>
+                <div class="game-tags">
+                  <span>RPG</span>
+                  <span>Open World</span>
+                  <span>Cyberpunk</span>
+                </div>
+                <a href="store.jsp" class="btn login">VIEW STORE</a>
+              </div>
+            </div>
+          </c:otherwise>
+        </c:choose>
         
-        <!-- Slide 2 -->
+        <!-- Slide 2: Static -->
         <div class="game-slide">
           <div class="slide-image" style="background-image: url('https://images.unsplash.com/photo-1586182987320-4f376d39d787?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80');"></div>
           <div class="slide-info">
@@ -73,7 +115,7 @@
           </div>
         </div>
         
-        <!-- Slide 3 -->
+        <!-- Slide 3: Static -->
         <div class="game-slide">
           <div class="slide-image" style="background-image: url('https://images.unsplash.com/photo-1551103782-8ab07afd45c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
           <div class="slide-info">
@@ -122,12 +164,9 @@
 
   <footer class="cyberpunk-footer">
     <div class="footer-container">
-      <!-- Left side - NextPlay brand -->
       <div class="footer-brand">
         <div class="logo">NextPlay</div>
       </div>
-      
-      <!-- Center - Horizontal Links -->
       <div class="footer-links-container">
         <div class="footer-links">
           <a href="#">About Us</a>
@@ -135,8 +174,6 @@
           <a href="#">Contact</a>
         </div>
       </div>
-      
-      <!-- Right side - Vertical Social with names -->
       <div class="footer-social-container">
         <div class="footer-social">
           <a href="#"><i class="fab fa-facebook-f"></i> <span>Facebook</span></a>
@@ -146,11 +183,9 @@
         </div>
       </div>
     </div>
-    
-    <p class="footer-copy">&copy; 2025 RealmForge. All rights reserved.</p>
+    <p class="footer-copy">&copy; 2025 Y2S1 students. All rights reserved.</p>
   </footer>
 
   <script src="script.js"></script>
-  
 </body>
 </html>
