@@ -14,5 +14,14 @@
        <servlet-name>gameinsert</servlet-name>
        <url-pattern>/insert</url-pattern>
    </servlet-mapping>     
- 
+   
+   <servlet>
+       <servlet-name>updategames</servlet-name>
+       <servlet-class>com.games.Updategameservlet</servlet-class>
+   </servlet>
+   
+   <servlet-mapping>
+       <servlet-name>updategames</servlet-name>
+       <url-pattern>/update</url-pattern>
+   </servlet-mapping> 
 </web-app>
