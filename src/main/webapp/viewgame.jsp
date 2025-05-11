@@ -180,6 +180,9 @@
         .review-content {
             line-height: 1.5;
         }
+        .btn btn-review{
+        	text-decoration:none;
+        }
         @media (max-width: 768px) {
             .game-header {
                 flex-direction: column;
@@ -238,50 +241,13 @@
                         <div class="action-buttons">
                             <button class="btn btn-primary">BUY NOW</button>
                             <button class="btn btn-secondary">ADD TO WISHLIST</button>
-                            <button class="btn btn-review" >WRITE A REVIEW</button>
+                            <button class="btn btn-review" onclick="window.location.href='Reviewui.jsp'">Write a Review</button>
+                            <button class="btn btn-secondary" onclick="window.location.href='seeReviews.jsp'">See Reviews</button>
                         </div>
                     </div>
                 </div>
                 
-                <div class="reviews">
-                    <h2 class="section-title">USER REVIEWS</h2>
-                    <div class="review-card">
-                        <div class="review-header">
-                            <div>
-                                <span class="review-author">CyberNinja</span>
-                                <span class="review-rating">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </span>
-                            </div>
-                            <div class="review-date">Posted: 2025-03-15</div>
-                        </div>
-                        <div class="review-content">
-                            <p>Absolutely stunning game! The cyberpunk atmosphere is perfect, and the hacking mechanics are innovative. The story kept me engaged for hours, and the character customization options are extensive.</p>
-                        </div>
-                    </div>
-                    <div class="review-card">
-                        <div class="review-header">
-                            <div>
-                                <span class="review-author">NeonRider</span>
-                                <span class="review-rating">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                </span>
-                            </div>
-                            <div class="review-date">Posted: 2025-03-10</div>
-                        </div>
-                        <div class="review-content">
-                            <p>Great game overall, but some bugs need fixing. The combat system is satisfying, and the world feels alive. The main story is a bit short, but the side quests make up for it.</p>
-                        </div>
-                    </div>
-                </div>
+ 
             </c:when>
             <c:otherwise>
                 <h1>Error</h1>

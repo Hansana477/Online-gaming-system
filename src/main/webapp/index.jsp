@@ -40,7 +40,7 @@
     <nav class="nav-links" id="navLinks">
       <a href="index.jsp" class="active">Home</a>
       <a href="store.jsp">Store</a>
-      <a href="#">Feedback</a>
+      <a href="feedback.jsp">Feedback</a>
       <a href="#">News</a>
       <a href="#">Support</a>
       <div class="auth-buttons">

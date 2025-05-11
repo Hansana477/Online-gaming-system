@@ -91,7 +91,7 @@
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                     <i class="far fa-star"></i>
-                                    <span>(0)</span>
+                                    
                                 </div>
                                 <button class="btn buy-now" onclick="window.location.href='viewgame.jsp?id=${game.id}'">VIEW GAME</button>
                             </div>

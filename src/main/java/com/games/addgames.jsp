@@ -119,7 +119,7 @@
                     <i class="fas fa-times"></i>
                 </button>
             </div>
-            <form id="gameForm" action="insert" method="POST" class="modal-form">
+            <form id="gameForm" action="insertgame" method="POST" class="modal-form">
                 <div class="form-grid">
                     <div class="form-group full-width">
                         <label class="form-label">Game Title</label>
@@ -160,7 +160,7 @@
                     <i class="fas fa-times"></i>
                 </button>
             </div>
-            <form id="editGameForm" action="update" method="POST" class="modal-form">
+            <form id="editGameForm" action="updategame" method="POST" class="modal-form">
                 <input type="hidden" name="id" id="editGameId">
                 <div class="form-grid">
                     <div class="form-group full-width">

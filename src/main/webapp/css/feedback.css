@@ -1,0 +1,265 @@
+/* ========== FEEDBACK FORM STYLES ========== */
+.feedback-container {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 0 20px;
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.cyber-form {
+  background-color: #111;
+  border: 2px solid #0ff;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+  padding: 30px;
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cyber-form::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #0ff, #0f0, #ff0, #f0f, #0ff);
+  background-size: 400%;
+  z-index: -1;
+  animation: borderGlow 8s linear infinite;
+  opacity: 0.7;
+  border-radius: 5px;
+}
+
+@keyframes borderGlow {
+  0% { background-position: 0 0; }
+  50% { background-position: 400% 0; }
+  100% { background-position: 0 0; }
+}
+
+.cyber-form h2 {
+  color: #0ff;
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 1.8rem;
+  text-shadow: 0 0 5px #0ff;
+  position: relative;
+}
+
+.cyber-form h2::after {
+  content: '';
+  display: block;
+  width: 100px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #0ff, transparent);
+  margin: 10px auto 0;
+}
+
+.cyber-form h2 i {
+  margin-right: 10px;
+}
+
+.form-group {
+  margin-bottom: 25px;
+  position: relative;
+}
+
+.form-group label {
+  display: block;
+  color: #0ff;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.cyber-input {
+  width: 100%;
+  padding: 12px 15px;
+  background-color: rgba(34, 34, 34, 0.8);
+  border: 1px solid #0ff;
+  color: #fff;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+  backdrop-filter: blur(5px);
+}
+
+.cyber-input:focus {
+  outline: none;
+  border-color: #fff;
+  box-shadow: 0 0 10px #0ff;
+  background-color: rgba(34, 34, 34, 0.9);
+}
+
+textarea.cyber-input {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.rating-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.rating-container input[type="radio"] {
+  display: none;
+}
+
+.rating-container label {
+  color: #444;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.rating-container input[type="radio"]:checked ~ label,
+.rating-container label:hover,
+.rating-container label:hover ~ label {
+  color: #0ff;
+  text-shadow: 0 0 5px #0ff;
+}
+
+.rating-container input[type="radio"]:checked + label {
+  color: #ff0;
+  text-shadow: 0 0 5px #ff0;
+}
+
+.cyber-button {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  background-color: #0ff;
+  color: #000;
+  border: none;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-top: 30px;
+  border: 2px solid #0ff;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.cyber-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: 0.5s;
+  z-index: -1;
+}
+
+.cyber-button:hover {
+  background-color: transparent;
+  color: #0ff;
+  box-shadow: 0 0 15px #0ff;
+}
+
+.cyber-button:hover::before {
+  left: 100%;
+}
+
+.cyber-button i {
+  margin-left: 8px;
+  transition: transform 0.3s;
+}
+
+.cyber-button:hover i {
+  transform: translateX(5px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .cyber-form {
+    padding: 20px;
+  }
+  
+  .cyber-form h2 {
+    font-size: 1.4rem;
+  }
+  
+  .rating-container label {
+    font-size: 1.2rem;
+  }
+  
+  .feedback-container {
+    margin: 30px auto;
+    padding: 0 15px;
+  }
+}
+
+/* ===== NUMBER RATING INPUT ===== */
+.number-rating {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.number-input {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 12px 5px;
+  flex: 1;
+  max-width: 80px;
+}
+
+.number-minus, .number-plus {
+  background-color: #111;
+  border: 2px solid #0ff;
+  color: #0ff;
+  width: 40px;
+  height: 40px;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  border-radius: 4px;
+  user-select: none;
+}
+
+.number-minus:hover, .number-plus:hover {
+  background-color: #0ff;
+  color: #000;
+  box-shadow: 0 0 10px #0ff;
+}
+
+.number-minus:active, .number-plus:active {
+  transform: scale(0.95);
+}
+
+/* Remove number input arrows */
+.number-input::-webkit-outer-spin-button,
+.number-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.number-input {
+  -moz-appearance: textfield;
+}
+
+/* Value indicator colors */
+.number-input {
+  color: #0ff;
+}
+.number-input:focus {
+  color: #fff;
+}
